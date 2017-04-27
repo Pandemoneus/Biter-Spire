@@ -1,0 +1,11 @@
+{
+  "name": "biter-spire",
+  "version": "0.15.0",
+  "factorio_version": "0.15",
+  "title": "Biter Spires",
+  "author": "Pandemoenus",
+  "contact": "Pandemoneus@gmx.de",
+  "homepage": "",
+  "description": "Adds alien spires that supply infinite energy... at a cost.",
+  "dependencies": ["base >= 0.15"]
+}
