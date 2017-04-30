@@ -2,7 +2,9 @@ local watts = 0.01674 -- 1 tick = 1/60 seconds
 local chunk_width = 32
 local chunk_height = 32
 
-local areaCache = {}
+if not global.areaCache then
+  global.areaCache = {}
+end
 
 --Expand the given area by one chunk in each direction (in place)
 local function expandArea(area)
@@ -32,7 +34,7 @@ script.on_event(defines.events.on_chunk_generated, function(event)
   expandArea(area)
   
   --Don't generate biter spires if the current chunk area is close to other biter spires
-  for _, cachedArea in pairs(areaCache) do
+  for _, cachedArea in pairs(global.areaCache) do
     if areasOverlap(cachedArea, area) then
       return
     end
@@ -70,7 +72,7 @@ script.on_event(defines.events.on_chunk_generated, function(event)
             spire.power_production = spire.electric_output_flow_limit
             
             --add the area we used to the session cache so we do not generate biter spires close to areas that already contain spires
-            table.insert(areaCache, area)
+            table.insert(global.areaCache, area)
         end
       end
    end
