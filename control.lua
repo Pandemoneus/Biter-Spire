@@ -2,10 +2,6 @@ local watts = 0.01674 -- 1 tick = 1/60 seconds
 local chunk_width = 32
 local chunk_height = 32
 
-if not global.areaCache then
-  global.areaCache = {}
-end
-
 --Expand the given area by one chunk in each direction (in place)
 local function expandArea(area)
   area.left_top.x = area.left_top.x - chunk_width
@@ -30,6 +26,10 @@ end
 --Game scripts
 ----------------
 script.on_event(defines.events.on_chunk_generated, function(event)
+  if not global.areaCache then
+    global.areaCache = {}
+  end
+  
   local area = event.area
   expandArea(area)
   
