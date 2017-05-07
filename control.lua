@@ -25,11 +25,13 @@ end
 ----------------
 --Game scripts
 ----------------
-script.on_event(defines.events.on_chunk_generated, function(event)
+script.on_event(defines.events.on_init, function(event)
   if not global.areaCache then
     global.areaCache = {}
   end
-  
+end)
+
+script.on_event(defines.events.on_chunk_generated, function(event)
   local area = event.area
   expandArea(area)
   
